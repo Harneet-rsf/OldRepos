@@ -1,0 +1,85 @@
+
+  def dateHourRange(d1: String, d2: String): Seq[String] = {
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH");
+    var sdatearr = d1.toString.split("-").map(x => x.toInt)
+    var endDatearr = d2.toString.split("-").map(x => x.toInt)
+    var startdate = LocalDateTime.of(sdatearr(0), sdatearr(1), sdatearr(2), sdatearr(3), 0, 0)
+    var enddate = LocalDateTime.of(endDatearr(0), endDatearr(1), endDatearr(2), endDatearr(3), 0, 0).minusHours(1)
+    var datelist = List[String]()
+    var sd = formatter.format(startdate).toString
+    var ed = formatter.format(enddate).toString
+    datelist :+= sd
+    if (sd == ed) {
+      return datelist
+    } else {
+      while (sd != ed) {
+
+        var sdatear = sd.toString.split("-").map(x => x.toInt)
+        val newdate = LocalDateTime.of(sdatear(0), sdatear(1), sdatear(2), sdatear(3), 0, 0).plusHours(1)
+        sd = formatter.format(newdate).toString
+        datelist :+= sd
+      }
+      return datelist
+    }
+  }
+
+
+def dateRange(startDate: String, endDate: String): Seq[String] = {
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    var sdatearr = startDate.toString.split("-").map(x => x.toInt)
+    var endDatearr = endDate.toString.split("-").map(x => x.toInt)
+    var startdate = LocalDateTime.of(sdatearr(0), sdatearr(1), sdatearr(2), 0, 0, 0)
+    var enddate = LocalDateTime.of(endDatearr(0), endDatearr(1), endDatearr(2), 0, 0, 0).minusHours(1)
+    var datelist = List[String]()
+    var sd = formatter.format(startdate).toString
+    var ed = formatter.format(enddate).toString
+    datelist :+= sd
+    if (sd == ed) {
+      return datelist
+    } else {
+      while (sd != ed) {
+        var sdatear = sd.toString.split("-").map(x => x.toInt)
+        val newdate = LocalDateTime.of(sdatear(0), sdatear(1), sdatear(2), 0, 0, 0).plusDays(1)
+        sd = formatter.format(newdate).toString
+        datelist :+= sd
+      }
+      return datelist
+    }
+  }
+  
+  
+  
+      val impLogPathList = dateRangeList.map(date => LogPath + "/*" + date + "*").
+      flatMap(f => hdfs.globStatus(new Path(f))).
+      filter(f => hdfs.exists(f.getPath)).
+      map(f => f.getPath.toString)
+      
+      val config = args match {
+      case args if (args != null) && (args.length == 2 => (args(0), args(1))
+      case _ => throw new IllegalArgumentException("Error Message")
+    }
+
+  
+      // Dynamic Partitioning settings
+    spark.sql("""set hive.exec.dynamic.partition=true""")
+    spark.sql("""set hive.exec.dynamic.partition.mode=nonstrict""")
+    spark.sql("set spark.sql.caseSensitive=true")
+
+    if (!spark.catalog.databaseExists(dbName))
+      spark.sql("""CREATE DATABASE IF NOT EXISTS """ + dbName)
+    spark.sql("""USE """ + dbName)
+
+                        <argument>${timeInstance}</argument>
+                        
+    <property>
+			<name>timeInstance</name>
+			<value>${coord:nominalTime()}</value>
+    </property>
+        
+                        
+                        
+  
+  
+  
+  
+  
