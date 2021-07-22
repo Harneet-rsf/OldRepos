@@ -33,7 +33,7 @@ x=490
 y=885
 
 startx=500
-startly=500
+starty=500
 
 nextx=490
 nexty=750
