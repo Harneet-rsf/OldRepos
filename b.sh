@@ -1,4 +1,4 @@
-quit::::
+#B::::
 
 export PATH=$PATH:/system/bin/
 
@@ -30,7 +30,7 @@ collectY=930
 gap=5
 collectGap=10
 
-function touch()
+touch()
 {
     echo "Touch: " $1 $2
     sendevent /dev/input/event1 3 53 $1
