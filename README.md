@@ -28,15 +28,41 @@ done
 
 export PATH=$PATH:/system/bin/
 
-n=10
-x=490
-y=885
+n=$1
+X=490
+Y=885
+#Y=1770
 
-startx=500
-starty=500
+chooseLeagueX=500
+chooseLeagueY=500
+#chooseLeagueY=1000
 
-nextx=490
-nexty=750
+nextX=490
+nextY=750
+#nextY=1500
+
+quitX=80
+quitY=175
+#quitY=350
+
+qConsentX=500
+qConsentY=475
+#qConsentY=950
+
+closeX=550
+closeY=875
+#closeY=1750
+
+battleX=850
+battleY=500
+#battleY=1000
+
+collectX=440
+collectY=930
+#collectY=1860
+
+gap=10
+collectGap=20
 
 function touch()
 {
@@ -51,20 +77,28 @@ function touch()
 
 for i in $(seq 1 $n)
 do
-    echo "Welcome $i times: " $x $y " : Now: " `date +"%T.%3N"`
-    touch $x $y
-    #input tap $x $y
-    if ! (( $i % 5 )) ; then
-        echo "Start $i times: " $startx $starty " : Now: " `date +"%T.%3N"`
-        touch $startx $starty
-        #input tap $startx $starty
+    echo "Welcome $i times: " $X $Y " : Now: " `date +"%T.%3N"`
+    touch $X $Y
+    #input tap $X $Y
+    if ! (( $i % $gap )) ; then
+        echo "ChooseLeague $i times: " $chooseLeagueX $chooseLeagueY " : Now: " `date +"%T.%3N"`
+        touch $chooseLeagueX $chooseLeagueY
+
+        echo "Next $i times: " $nextX $nextY " : Now: " `date +"%T.%3N"`
+        touch $nextX $nextY
+
+        echo "Quit $i times: " $quitX $quitY " : Now: " `date +"%T.%3N"`
+        touch $quitX $quitY
+
+        echo "QuitConsent $i times: " $qConsentX $qConsentY " : Now: " `date +"%T.%3N"`
+        touch $qConsentX $qConsentY
     fi
-    if ! (( $i % 5 )) ; then
-        echo "Next $i times: " $nextx $nexty " : Now: " `date +"%T.%3N"`
-        touch $nextx $nexty
-        #input tap $nextx $nexty
+    
+    if ! (( $i % $collectGap )) ; then
+        echo "Collect $i times: " $collectX $collectY " : Now: " `date +"%T.%3N"`
+        touch $collectX $collectY
     fi
-    #input tap $lx $ly 
+    #input tap $lX $lY 
     
     #sleep 0.1
 done
