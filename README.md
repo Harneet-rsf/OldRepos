@@ -42,15 +42,15 @@ nextY=750
 #nextY=1500
 
 quitX=80
-quitY=175
-#quitY=350
+#quitY=175
+quitY=350
 
 qConsentX=500
-qConsentY=475
+qConsentY=444
 #qConsentY=950
 
 closeX=550
-closeY=875
+closeY=905
 #closeY=1750
 
 battleX=850
@@ -61,8 +61,8 @@ collectX=440
 collectY=930
 #collectY=1860
 
-gap=10
-collectGap=20
+gap=5
+collectGap=10
 
 function touch()
 {
@@ -77,7 +77,7 @@ function touch()
 
 for i in $(seq 1 $n)
 do
-    echo "Welcome $i times: " $X $Y " : Now: " `date +"%T.%3N"`
+    echo "Hit $i times: " $X $Y " : Now: " `date +"%T.%3N"`
     touch $X $Y
     #input tap $X $Y
     if ! (( $i % $gap )) ; then
@@ -89,7 +89,9 @@ do
 
         echo "Quit $i times: " $quitX $quitY " : Now: " `date +"%T.%3N"`
         touch $quitX $quitY
-
+        
+        sleep 1
+        
         echo "QuitConsent $i times: " $qConsentX $qConsentY " : Now: " `date +"%T.%3N"`
         touch $qConsentX $qConsentY
     fi
@@ -97,9 +99,17 @@ do
     if ! (( $i % $collectGap )) ; then
         echo "Collect $i times: " $collectX $collectY " : Now: " `date +"%T.%3N"`
         touch $collectX $collectY
+        
+        echo "Hit $i times: " $X $Y " : Now: " `date +"%T.%3N"`
+        touch $X $Y
+        
+        sleep 0.5
+        
+        echo "Close $i times: " $closeX $closeY " : Now: " `date +"%T.%3N"`
+        touch $closeX $closeY
     fi
-    #input tap $lX $lY 
     
+    sleep 0.5
     #sleep 0.1
 done
 
